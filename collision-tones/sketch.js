@@ -36,7 +36,13 @@ class Ball {
     // Minimum distance before they are touching
     let minDistance = this.r + other.r;
 
+    // if collision has occurred
     if (distanceVectMag < minDistance) {
+
+      // play sound here
+      let note = random(['A4', 'C4', 'E4', 'A5', 'C5', 'E5', 'A6', 'C6', 'E6'])
+      polySynth.play(note, 0.6, 0, 1/2)
+
       let distanceCorrection = (minDistance - distanceVectMag) / 2.0;
       let d = distanceVect.copy();
       let correctionVector = d.normalize().mult(distanceCorrection);
@@ -123,12 +129,19 @@ class Ball {
   }
 }
 
-let balls = [new Ball(100, 400, 20), new Ball(700, 400, 80), new Ball(700, 400, 8)];
+let balls = [new Ball(100, 400, 10),
+             new Ball(700, 600, 20),
+             new Ball(300, 500, 30),
+             new Ball(200, 100, 40),
+             new Ball(500, 300, 50),
+             new Ball(600, 200, 60)];
 
 console.log(balls);
 
 function setup() {
   createCanvas(710, 400);
+  polySynth = new p5.PolySynth();
+  polySynth.setADSR(0.2, 0.1, 1, 4);
 }
 
 function draw() {
@@ -140,6 +153,25 @@ function draw() {
     b.checkBoundaryCollision();
     balls[0].checkCollision(balls[1]);
     balls[0].checkCollision(balls[2]);
+    balls[0].checkCollision(balls[3]);
+    balls[0].checkCollision(balls[4]);
+    balls[0].checkCollision(balls[5]);
+
     balls[1].checkCollision(balls[2]);
+    balls[1].checkCollision(balls[3]);
+    balls[1].checkCollision(balls[4]);
+    balls[1].checkCollision(balls[5]);
+
+    balls[2].checkCollision(balls[3]);
+    balls[2].checkCollision(balls[4]);
+    balls[2].checkCollision(balls[5]);
+
+    balls[3].checkCollision(balls[4]);
+    balls[3].checkCollision(balls[5]);
+
+    balls[4].checkCollision(balls[5]);
   }
 }
+
+// allow web audio after mouse click
+function mousePressed() { getAudioContext().resume() }
