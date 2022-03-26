@@ -39,9 +39,9 @@ class Ball {
     // if collision has occurred
     if (distanceVectMag < minDistance) {
 
-      // play sound here
-      let note = random(['A4', 'C4', 'E4', 'A5', 'C5', 'E5', 'A6', 'C6', 'E6'])
-      polySynth.play(note, 0.6, 0, 1/2)
+      // // play sound here
+      // let note = random(['A4', 'C4', 'E4', 'A5', 'C5', 'E5', 'A6', 'C6', 'E6'])
+      // polySynth.play(note, 0.6, 0, 1/2)
 
       let distanceCorrection = (minDistance - distanceVectMag) / 2.0;
       let d = distanceVect.copy();
@@ -119,6 +119,10 @@ class Ball {
       this.velocity.y = cosine * vFinal[0].y + sine * vFinal[0].x;
       other.velocity.x = cosine * vFinal[1].x - sine * vFinal[1].y;
       other.velocity.y = cosine * vFinal[1].y + sine * vFinal[1].x;
+
+      // play sound here
+      let note = random(['A4', 'C4', 'E4', 'A5', 'C5', 'E5', 'A6', 'C6', 'E6'])
+      polySynth.play(note, 0.6, 0, 1/2)
     }
   }
 
@@ -131,16 +135,17 @@ class Ball {
 }
 
 let balls = [new Ball(100, 400, 30),
-             new Ball(700, 600, 40),
+             new Ball(500, 600, 40),
              new Ball(300, 500, 70),
              new Ball(200, 100, 40),
              new Ball(500, 300, 50),
-             new Ball(600, 200, 60)];
+             new Ball(400, 200, 60)];
 
 console.log(balls);
 
 function setup() {
-  createCanvas(700, 700);
+  // approximate portrait phone: 510x890
+  createCanvas(520, 900);
   polySynth = new p5.PolySynth();
   // polySynth.setADSR(0.2, 0.1, 1, 4);
 }
