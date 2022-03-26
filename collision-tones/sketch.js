@@ -122,16 +122,17 @@ class Ball {
     }
   }
 
-  display() {
+  display(color) {
+    // let color = random(['#ef476f', '#06d6a0', '#118ab2', '#073b4c'])
     noStroke();
-    fill(204);
+    fill(color);
     ellipse(this.position.x, this.position.y, this.r * 2, this.r * 2);
   }
 }
 
-let balls = [new Ball(100, 400, 10),
-             new Ball(700, 600, 20),
-             new Ball(300, 500, 30),
+let balls = [new Ball(100, 400, 30),
+             new Ball(700, 600, 40),
+             new Ball(300, 500, 70),
              new Ball(200, 100, 40),
              new Ball(500, 300, 50),
              new Ball(600, 200, 60)];
@@ -139,17 +140,18 @@ let balls = [new Ball(100, 400, 10),
 console.log(balls);
 
 function setup() {
-  createCanvas(710, 400);
+  createCanvas(700, 700);
   polySynth = new p5.PolySynth();
-  polySynth.setADSR(0.2, 0.1, 1, 4);
+  // polySynth.setADSR(0.2, 0.1, 1, 4);
 }
 
 function draw() {
-  background(51);
+  background('#ffd166');
   for (let i = 0; i < balls.length; i++) {
+    let colors = ['#ef476f', '#06d6a0', '#118ab2', '#073b4c', '#ef476f', '#06d6a0']
     let b = balls[i];
     b.update();
-    b.display();
+    b.display(colors[i]);
     b.checkBoundaryCollision();
     balls[0].checkCollision(balls[1]);
     balls[0].checkCollision(balls[2]);
