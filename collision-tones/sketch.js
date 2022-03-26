@@ -39,10 +39,6 @@ class Ball {
     // if collision has occurred
     if (distanceVectMag < minDistance) {
 
-      // // play sound here
-      // let note = random(['A4', 'C4', 'E4', 'A5', 'C5', 'E5', 'A6', 'C6', 'E6'])
-      // polySynth.play(note, 0.6, 0, 1/2)
-
       let distanceCorrection = (minDistance - distanceVectMag) / 2.0;
       let d = distanceVect.copy();
       let correctionVector = d.normalize().mult(distanceCorrection);
