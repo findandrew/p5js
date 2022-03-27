@@ -7,6 +7,10 @@ function setup() {
 
 function draw() {
   background('#ffd166');
+  strokeWeight(5);
+  line(260, 100, 260, 800);
+  strokeWeight(0);
+  circle(40,40,80);
 }
 
 // allow web audio after mouse click
