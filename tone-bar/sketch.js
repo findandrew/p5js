@@ -10,11 +10,11 @@ function Dot(i) {
   this.amplitude = 100;
   this.angle = 0;
   this.speed = speeds[i];
-  
+
   this.move = function () {
     this.angle = this.angle + this.speed;
   };
-  
+
   this.display = function (w) {
     var x = this.centerX;
     var y = this.centerY + sin(this.angle) * this.amplitude;
